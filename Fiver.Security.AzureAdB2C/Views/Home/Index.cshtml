@@ -1,0 +1,34 @@
+﻿<h2>ASP.NET Core Azure AD B2C Authentication</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div>
+        <h1>Hello @User.Identity.Name</h1>
+        <ul>
+            @foreach (var claim in User.Claims)
+            {
+                <li>
+                    <em>@claim.Type</em>: @claim.Value
+                </li>
+            }
+        </ul>
+    </div>
+
+    <form method="post" asp-controller="Security" asp-action="Logout">
+        <button type="submit">Logout</button>
+    </form>
+
+    <a asp-controller="Security" asp-action="EditProfile">Edit Profile</a>
+}
+else
+{
+    <div>
+        <a asp-controller="Security" asp-action="Login">Login</a> |
+        <a asp-controller="Security" asp-action="SignUp">Sign Up</a>
+    </div>
+}
+
+
+
+
+
